@@ -31,7 +31,6 @@ class RottenTomatoesRating:
 			print (k)  
 
 		url = scoring["rotten tomato"]
-		req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 
 		opener = AppURLopener()
 		soup = BeautifulSoup(opener.open(url).read(), 'html5lib')
@@ -86,7 +85,6 @@ class RottenTomatoesRating:
 			
 	def invoke_transmission(self, title, link):
 		url = link
-		req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
                
 		opener = AppURLopener()
 		soup = BeautifulSoup(opener.open(url).read(), 'html5lib')
@@ -134,7 +132,7 @@ def main(argv):
 	if (len(argv) == 0):
 		
 		rt = RottenTomatoesRating()
-		titles = rt.search_movie();
+		titles = rt.search_movie()
 		print ('\n### Here are the results:\n')
 		print (titles)
 
@@ -142,6 +140,7 @@ def main(argv):
 
 	elif (len(argv) == 1):
 		print ('fetching: ' + argv[0], '\n')
+		rt = RottenTomatoesRating()
 		title = argv[0]
 
 		titles = []
