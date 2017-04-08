@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python3 movie_search.py $@
+python3 movie_search.py "$@"

@@ -60,7 +60,7 @@ class RottenTomatoesRating:
 			result.append(st)
 		return result
 		
-	def fetch_torrent(self, titles):
+	def fetch_torrent(self, titles, res):
 
 		history = History()
 		downloaded_titles = history.init_downloaded_title()
@@ -73,7 +73,7 @@ class RottenTomatoesRating:
 
 		url_base = 'https://thepiratebay.org'
 		for title in computed_titles:
-			torrent_page_url = url_base + '/search/' + title +'%201080p/0/99/207'
+			torrent_page_url = url_base + '/search/' + title +'%20' + res + '/0/99/207'
 			print (torrent_page_url)
 
 			history = History()
@@ -136,17 +136,28 @@ def main(argv):
 		print ('\n### Here are the results:\n')
 		print (titles)
 
-		rt.fetch_torrent(titles)
+		rt.fetch_torrent(titles, '1080p')
 
+	elif (len(argv) == 2):
+		print ('fetching: ' + argv[0], '\n')
+		rt = RottenTomatoesRating()
+		title = argv[0]
+		res = argv[1]
+
+		titles = []
+		titles.append(title)
+		rt.fetch_torrent(titles, res)
+		
 	elif (len(argv) == 1):
 		print ('fetching: ' + argv[0], '\n')
 		rt = RottenTomatoesRating()
 		title = argv[0]
+		res = '1080p'
 
 		titles = []
 		titles.append(title)
-		rt.fetch_torrent(titles)
-		
+		rt.fetch_torrent(titles, res)
+
 	else:
 		print ('incorrent input\n')
 		print ('Usage: python3 movie_search.py [movie title]')
